@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* next-themes uses class="dark" on <html> — required for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Master Group - light palette */
+  --mgi-blue: #0055a5;
+  --mgi-blue-dark: #2f7ec4;
+  --mgi-blue-soft: #eef5fc;
+  --mgi-red: #e31e24;
+  --mgi-yellow: #fff200;
+  --mgi-white: #ffffff;
+  --mgi-ink: #2a4a6e;
+  --mgi-muted: #6d8499;
+
+  --background: #f3f7fc;
+  --foreground: #2a4a6e;
+  --card: #ffffff;
+  --muted: #6d8499;
+  --accent: #0055a5;
+  --ring: rgba(0, 85, 165, 0.28);
+  --border: rgba(0, 85, 165, 0.14);
+
+  /* Offline-safe stacks (no Google Fonts at Docker build time) */
+  --font-sans: "Segoe UI", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-mono: "Cascadia Code", "Consolas", "Liberation Mono", ui-monospace, monospace;
+}
+
+/* True Master navy dark mode */
+.dark {
+  --mgi-blue: #3d9ae8;
+  --mgi-blue-dark: #7eb6e8;
+  --mgi-blue-soft: #152a45;
+  --mgi-ink: #e8f1fa;
+  --mgi-muted: #9aa8b8;
+
+  --background: #0a1628;
+  --foreground: #e8f1fa;
+  --card: #122238;
+  --muted: #9aa8b8;
+  --accent: #fff200;
+  --ring: rgba(255, 242, 0, 0.28);
+  --border: rgba(126, 182, 232, 0.18);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-mgi-blue: var(--mgi-blue);
+  --color-mgi-red: var(--mgi-red);
+  --color-mgi-yellow: var(--mgi-yellow);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: rgba(0, 85, 165, 0.22);
+}
+
+.dark ::selection {
+  background: rgba(255, 242, 0, 0.25);
+}
+
+.recharts-cartesian-axis-tick-value,
+.recharts-legend-item-text {
+  fill: currentColor;
+}
+
+.recharts-bar-rectangle,
+.recharts-pie-sector {
+  cursor: pointer;
+}
+
+.chart-value-chip {
+  animation: chip-pop 0.35s ease-out both;
+}
+
+@keyframes chip-pop {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-weight: 600;
+}
+
+@keyframes login-scan {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(220%);
+    opacity: 0;
+  }
+}
+
+@keyframes login-pulse-ring {
+  0% {
+    transform: scale(0.86);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.28);
+    opacity: 0;
+  }
+}
+
+@keyframes login-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.login-scan {
+  animation: login-scan 7s ease-in-out infinite;
+}
+
+.login-pulse-ring {
+  animation: login-pulse-ring 2.6s ease-out infinite;
+}
+
+.login-float {
+  animation: login-float 5s ease-in-out infinite;
+}
