@@ -92,7 +92,7 @@ Express API (:5057)
 ```
 Audit_dashboard/
 ├── package.json              # root scripts (install / run both apps)
-├── .env.example              # copy → .env
+├── .gitignore                # blocks .env, node_modules, build output
 ├── backend/
 │   ├── package.json
 │   └── src/
@@ -121,15 +121,26 @@ Audit_dashboard/
 
 ### 1. Environment
 
-```bash
-cp .env.example .env
-# edit DB_*, JWT_SECRET, DATA_URL, PO2GRN_URL, OPENAI_API_KEY
+Create a local `.env` in the **project root** (never commit this file). Minimum keys:
+
+```env
+PORT=5057
+CORS_ORIGIN=http://localhost:3033
+JWT_SECRET=change-me-to-a-long-random-string
+DATA_URL=http://192.168.1.209:6070/callcenterreportdata
+PO2GRN_URL=http://192.168.1.209:6070/callcenterreportdata/po2grn
+DB_HOST=192.168.1.209
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=Audit_Dashboard
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-4o-mini
 ```
 
-Frontend (optional override):
+Optional frontend override in `frontend/.env.local` (also gitignored):
 
-```bash
-# frontend/.env.local
+```env
 NEXT_PUBLIC_API_URL=http://localhost:5057
 ```
 
@@ -193,7 +204,7 @@ Common filter query params: `organization`, `operatingUnit`, `department`, `prCr
 - Aggregation and ACL live on the **backend**; the UI only renders what permissions allow.
 - The chatbot never invents spend/PR/PO counts — it calls the same services the charts use.
 - Source feeds are cached with background refresh (`CACHE_TTL_MS` / stale window) so the dashboard stays responsive.
-- Do not commit `.env`. Use `.env.example` as the template.
+- Do not commit `.env` or `.env.local` — both are gitignored. Keep secrets only on your machine / server.
 
 ---
 

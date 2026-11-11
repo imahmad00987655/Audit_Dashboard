@@ -8,10 +8,10 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
-# Environment & secrets
+# Environment & secrets — never commit any .env file
 .env
 .env.*
-!.env.example
+*.env
 
 # Build / cache
 .next/
