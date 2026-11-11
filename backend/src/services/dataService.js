@@ -1,7 +1,7 @@
 /**
  * Data service - fetches & caches procurement data from source API
  */
-const DATA_URL = process.env.DATA_URL || "http://192.168.1.209:6070/callcenterreportdata";
+const DATA_URL = process.env.DATA_URL || "http://localhost:6070/callcenterreportdata";
 const CACHE_TTL_MS = Number(process.env.CACHE_TTL_MS || 5 * 60 * 1000);
 /** Serve cached rows this long even after TTL while a background refresh runs. */
 const STALE_MAX_MS = Number(process.env.CACHE_STALE_MAX_MS || 30 * 60 * 1000);

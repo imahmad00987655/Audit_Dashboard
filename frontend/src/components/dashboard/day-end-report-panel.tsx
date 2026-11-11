@@ -145,7 +145,7 @@ export function DayEndReportPanel({ open, onClose }: DayEndReportPanelProps) {
     try {
       const token = localStorage.getItem("audit_token");
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "http://192.168.1.209:5057"}/reports/day-end/${id}/pdf`,
+        `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5057"}/reports/day-end/${id}/pdf`,
         {
           credentials: "include",
           headers: token ? { Authorization: `Bearer ${token}` } : {},

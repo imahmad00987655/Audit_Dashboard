@@ -127,9 +127,9 @@ Create a local `.env` in the **project root** (never commit this file). Minimum 
 PORT=5057
 CORS_ORIGIN=http://localhost:3033
 JWT_SECRET=change-me-to-a-long-random-string
-DATA_URL=http://192.168.1.209:6070/callcenterreportdata
-PO2GRN_URL=http://192.168.1.209:6070/callcenterreportdata/po2grn
-DB_HOST=192.168.1.209
+DATA_URL=http://localhost:6070/callcenterreportdata
+PO2GRN_URL=http://localhost:6070/callcenterreportdata/po2grn
+DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=
@@ -137,6 +137,7 @@ DB_NAME=Audit_Dashboard
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 ```
+
 
 Optional frontend override in `frontend/.env.local` (also gitignored):
 

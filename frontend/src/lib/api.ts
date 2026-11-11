@@ -488,7 +488,7 @@ export interface DrillPath {
   label: string;
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://192.168.1.209:5057";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5057";
 
 export interface UserDataAccess {
   organizations: string[];

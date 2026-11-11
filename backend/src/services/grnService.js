@@ -1,7 +1,7 @@
 /**
  * GRN / PO→Receipt data from po2grn API — joined with PR/PO filters via PO_NO
  */
-const PO2GRN_URL = process.env.PO2GRN_URL || "http://192.168.1.209:6070/callcenterreportdata/po2grn";
+const PO2GRN_URL = process.env.PO2GRN_URL || "http://localhost:6070/callcenterreportdata/po2grn";
 const CACHE_TTL_MS = Number(process.env.CACHE_TTL_MS || 5 * 60 * 1000);
 const STALE_MAX_MS = Number(process.env.CACHE_STALE_MAX_MS || 30 * 60 * 1000);
 
