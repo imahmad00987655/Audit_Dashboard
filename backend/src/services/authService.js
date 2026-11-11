@@ -175,12 +175,25 @@ async function createUser({ username, email, password, fullName, role = "user" }
 }
 
 async function ensureAdminSeed() {
-  const existing = await findUserByUsername("admin");
+  const username = String(process.env.ADMIN_USERNAME || "admin").trim() || "admin";
+  const password = String(process.env.ADMIN_PASSWORD || "").trim();
+  const email = String(process.env.ADMIN_EMAIL || "admin@localhost").trim() || "admin@localhost";
+
+  const existing = await findUserByUsername(username);
   if (existing) return existing;
+
+  // Never ship a hardcoded password — seed only when ADMIN_PASSWORD is set locally.
+  if (!password) {
+    console.warn(
+      `[auth] No admin user yet. Set ADMIN_PASSWORD in .env to create "${username}" on next start.`
+    );
+    return null;
+  }
+
   return createUser({
-    username: "admin",
-    email: "admin@mastergroup.com",
-    password: "Admin@123",
+    username,
+    email,
+    password,
     fullName: "System Administrator",
     role: "admin",
   });

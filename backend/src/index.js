@@ -53,8 +53,10 @@ app.listen(PORT, "0.0.0.0", async () => {
   console.log(`Procurement Audit API listening on 0.0.0.0:${PORT}`);
 
   try {
-    await ensureAdminSeed();
-    console.log("Admin user ready (default: admin / Admin@123 if newly seeded)");
+    const admin = await ensureAdminSeed();
+    if (admin) {
+      console.log(`Admin user ready (${admin.username})`);
+    }
   } catch (e) {
     console.warn("Admin seed skipped (DB may not be ready):", e.message);
   }

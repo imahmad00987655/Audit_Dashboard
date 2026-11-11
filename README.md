@@ -31,7 +31,7 @@ Internal audit platform for **Master Group of Industries** — live PR/PO/GRN an
 - Optional SMTP email to configured recipients
 
 ### Admin & security
-- JWT cookie auth (default seed admin on first DB connect)
+- JWT cookie auth (optional first admin via `ADMIN_PASSWORD` in local `.env`)
 - Per-user **permissions** (which KPIs / charts / features appear)
 - Per-user **data access** (organizations / domains) so non-admin users only see assigned companies
 - Chatbot is itself a gated feature (`feature-chatbot`)
@@ -136,8 +136,12 @@ DB_PASSWORD=
 DB_NAME=Audit_Dashboard
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
-```
 
+# First admin (created only if that username does not exist yet)
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=your-strong-password-here
+ADMIN_EMAIL=admin@localhost
+```
 
 Optional frontend override in `frontend/.env.local` (also gitignored):
 
@@ -163,10 +167,7 @@ cd frontend && npm install && npm run dev
 ```
 
 ### 3. Login
-On first successful DB connection the API seeds an admin user if missing:
-
-- Username: `admin`
-- Password: `Admin@123` *(change immediately in production)*
+Set `ADMIN_PASSWORD` in your local `.env` before the first backend start. The API creates that admin only if the user does not already exist — no default password is hardcoded in the repo.
 
 Grant `feature-chatbot` (and any KPI/chart rights you want the bot to discuss) from the Admin panel for non-admin users.
 
